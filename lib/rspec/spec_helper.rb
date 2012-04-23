@@ -9,14 +9,14 @@ require File.expand_path(File.dirname(__FILE__) + "/reporting/selenium_test_repo
 RSpec.configure do |config|
 
   config.before(:each) do
-    @headless.video.start_capture
+    @headless.video.start_capture if defined? @headless
   end
 
   config.after(:each) do 
     if actual_failure? 
       SeleniumTestReportFormatter.capture_system_state(@driver, @headless, self.example)
     else
-      @headless.video.stop_and_discard
+      @headless.video.stop_and_discard if defined? @headless
     end
   end
 

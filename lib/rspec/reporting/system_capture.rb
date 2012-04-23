@@ -23,7 +23,7 @@ module Selenium
             STDERR.puts "WARNING: Could not capture page screenshot: #{e}"
           end
           begin
-            capture_video
+            capture_video if defined? @headless
           rescue Exception => e
             STDERR.puts "WARNING: Could not capture video: #{e}"
           end
